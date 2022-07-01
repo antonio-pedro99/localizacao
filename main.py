@@ -1,14 +1,18 @@
 from typing import Tuple
 from fastapi import FastAPI
+from schemas.address import Address
 from schemas.location import Location
-from dependencies.depends import distance, get_location_details, locator
+from dependencies.depends import distance, get_location_details, get_location_details_by_address, locator
 
 app = FastAPI()
 
 @app.get("/details/")
-def get_details(lat:float, lon:float):
+def get_details_by_coordinates(lat:float, lon:float):
     return get_location_details(l=(lat, lon))
 
+@app.post("/details")
+def get_details_by_address(address:Address):
+    return get_location_details_by_address(address=address.address)
 
 @app.get("/distance/cost")
 def get_cost_per_distance(loc_lact:float,loc_lon:float, des_lat:float, des_lon:float,  fixed_tax:float, tax:float):

@@ -16,4 +16,9 @@ def get_location_details(l:Tuple):
         return location.raw
     return {"error": "No data was found for this point."}
 
+def get_location_details_by_address(address:str):
+    location = locator.geocode(address)
+    if location:
+        return location.raw
+    return {"error": "No data was found for this point."}
 
