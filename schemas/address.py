@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 
-
-
-class Address(BaseModel):
-    address:str
+class DistanceAddress(BaseModel):
+    firstAddress:str
+    secondAddress:str
