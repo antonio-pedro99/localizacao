@@ -42,4 +42,4 @@ Made  by: Antonio Pedro
         "importance": 0.41009999999999996,
         "icon": "https://nominatim.openstreetmap.org/ui/mapicons/money_bank2.p.20.png"
     }
-    ```
+ ```
