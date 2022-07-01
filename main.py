@@ -1,7 +1,5 @@
 from fastapi import FastAPI
 from typing import Optional
-
-from pymysql import NULL
 from schemas.address import DistanceAddress
 from dependencies.depends import calculate_distance, get_coordinates_by_address, get_location_details, get_location_details_by_address, get_tax
 from schemas.cost import Cost
@@ -12,9 +10,9 @@ app = FastAPI()
 @app.get("/details", tags=["Coordinates Details"])
 def get_details(address:Optional[str] = "", lat:Optional[float]=0, lon:Optional[float] = 0):
 
-    if address == "" or address == NULL:
+    if address == "" or address == None:
         return get_location_details(l=(lat, lon))
-    elif lon == 0 or lon == NULL and lat == 0 or lat == NULL:
+    elif lon == 0 or lon == None and lat == 0 or lat == None:
         return get_location_details_by_address(address=address)
     return {
         "details": "If you are using address string set longitude and lactitude either to 0 or null, and vice-versa"
