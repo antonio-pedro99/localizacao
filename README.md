@@ -21,7 +21,9 @@ Made  by: Antonio Pedro
      It is a Get method and you need to pass the address details in form of `latitude` and `longitude`.
    
    Follow up this example:
-   if we have `28.5487558`, `77.2714498`, as the latitude and longitude consequently, the response of this request is going to be
+   if we have `28.5487558`, `77.2714498`, as the latitude and longitude consequently
+   
+   Response Body:
    
    ```json
        {
@@ -42,4 +44,35 @@ Made  by: Antonio Pedro
         "importance": 0.41009999999999996,
         "icon": "https://nominatim.openstreetmap.org/ui/mapicons/money_bank2.p.20.png"
     }
- ```
+  ```
+   #### Get Cost per Distance
+   
+  - `https://geolocalizacao-api.herokuapp.com/distance/cost/coordinates` - 
+    
+    It is a Get method and you need to pass both initial address coordinates(latitude and longitude) and final address coordinates(latitude, longitude) as query parameters.
+    
+    Response body:
+   ```json
+       {
+        "total_tax": 30,
+        "distance": 0
+    }
+   ```
+  - `https://geolocalizacao-api.herokuapp.com/distance/cost` - 
+  
+  Similar to the first one, but it a Post method and you need to pass a request body as
+  
+ ```json
+    {
+      "firstAddress": "string",
+      "secondAddress": "string"
+    }
+  ```
+  and `fixed_tax`- the normal fee for develivery under 10 km of distance along with `tax_rate` - if the distance is over 10 km increase the fees by tax_rate per km.
+  Both `fixed_tax` and `tax_rate` must be passed as query parameter only.
+  
+  Response body:
+    Same as the previous one.
+    
+  For more details and interative documentation head over at: https://geolocalizacao-api.herokuapp.com/docs or https://geolocalizacao-api.herokuapp.com/redoc
+ 
