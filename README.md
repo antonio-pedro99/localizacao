@@ -3,10 +3,10 @@
 License: IIG 
 Made  by: Antonio Pedro
 
-### Introduction
+## Introduction
   This Microservice was built to handle all the geolocalization needs of the system being built by IIG. Follow up those steps to know how to use and how it works.
   
-### How does it works?
+## How does it works?
 
   This Microservice works under geopy python library and FastAPI.
   This might be used and implemented as third Party API. It uses only two HTTP request Method: Get and Post.
