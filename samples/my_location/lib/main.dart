@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_location/address/address.dart';
 import 'package:my_location/models/location.dart';
 import 'package:my_location/models/request_response.dart';
 import 'package:my_location/services/coordinates_to_address.dart';
@@ -14,12 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Location Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'My Location Demo'),
-    );
+        title: 'My Location Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const AddressPage() //const MyHomePage(title: 'My Location Demo'),
+        );
   }
 }
 
