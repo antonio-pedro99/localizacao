@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 
-@immutable
+// this class contains all information that will be provided by the API, do not change.
 class AddressModel {
   String? countryCode;
   String? housenumber;
@@ -33,6 +32,7 @@ class AddressModel {
       this.addressLine2,
       this.resultType});
 
+  
   AddressModel.fromJson(Map<String, dynamic> json) {
     countryCode = json['country_code'];
     housenumber = json['housenumber'];
@@ -50,23 +50,21 @@ class AddressModel {
     resultType = json['result_type'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['country_code'] = countryCode;
-    data['housenumber'] = housenumber;
-    data['street'] = street;
-    data['country'] = country;
-    data['postcode'] = postcode;
-    data['state'] = state;
-    data['district'] = district;
-    data['city'] = city;
-    data['lon'] = lon;
-    data['lat'] = lat;
-    data['formatted'] = formatted;
-    data['address_line1'] = addressLine1;
-    data['address_line2'] = addressLine2;
-    data['result_type'] = resultType;
-    return data;
+  AddressModel.fromAddress(AddressModel other) {
+    countryCode = other.countryCode;
+    housenumber = other.housenumber;
+    street = other.street;
+    country = other.country;
+    postcode = other.postcode;
+    state = other.state;
+    district = other.district;
+    city = other.city;
+    lon = other.lon;
+    lat = other.lat;
+    formatted = other.formatted;
+    addressLine1 = other.addressLine1;
+    addressLine2 = other.addressLine2;
+    resultType = other.resultType;
   }
 
   @override
@@ -79,17 +77,19 @@ class AddressModel {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is AddressModel && other.formatted == formatted && other.city == city;
+    return other is AddressModel &&
+        other.formatted == formatted &&
+        other.city == city;
   }
 
   @override
   int get hashCode => Object.hash(formatted, city);
 }
 
-class UserAddres {
+// this will be the user Class, containing all information.
+class UserAddress {
   AddressModel? address;
   String? addressDetails; //House No, Flat No, Street and etc.
 
-  UserAddres({this.address, this.addressDetails});
-
+  UserAddress({this.address, this.addressDetails});
 }

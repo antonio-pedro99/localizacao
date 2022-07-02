@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_location/address/address.dart';
+import 'package:my_location/address/home.dart';
+import 'package:my_location/address/user.dart';
 import 'package:my_location/models/location.dart';
 import 'package:my_location/models/request_response.dart';
 import 'package:my_location/services/coordinates_to_address.dart';
 import 'package:my_location/services/location.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,13 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'My Location Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const AddressPage() //const MyHomePage(title: 'My Location Demo'),
-        );
+    return MultiProvider(
+        providers: [ChangeNotifierProvider(create: (_) => UserModel())],
+        child: MaterialApp(
+            title: 'My Location Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home:
+                const UserAddressesPage() //const MyHomePage(title: 'My Location Demo'),
+            ));
   }
 }
 
