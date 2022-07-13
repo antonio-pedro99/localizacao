@@ -1,7 +1,8 @@
+from unittest import result
 from fastapi import FastAPI
 from typing import Optional
-from schemas.address import DistanceAddress
-from dependencies.depends import calculate_distance, get_coordinates_by_address, get_location_details, get_location_details_by_address, get_tax
+from schemas.address import Address, DistanceAddress
+from dependencies.depends import calculate_distance, get_address, get_coordinates_by_address, get_location_details, get_location_details_by_address, get_tax
 from schemas.cost import Cost
 
 app = FastAPI()
@@ -30,10 +31,10 @@ def get_cost_per_distance_by_coordinates(loc_lact:float,loc_lon:float, des_lat:f
     }
 
 
-@app.post("/distance/cost", tags=["Coordinates Distances"], response_model=Cost)
-def get_cost_per_distance_by_address(address:DistanceAddress, fixed_tax:float, tax_rate:float):
-    addr1 = get_coordinates_by_address(address.firstAddress)
-    addr2 = get_coordinates_by_address(address.secondAddress)
+@app.get("/distance/cost", tags=["Coordinates Distances"], response_model=Cost)
+def get_cost_per_distance_by_address(firstAddress:str, secondAddress:str, fixed_tax:float, tax_rate:float):
+    addr1 = get_coordinates_by_address(firstAddress)
+    addr2 = get_coordinates_by_address(secondAddress)
     distance = calculate_distance((addr1["lat"], addr1["lon"]), (addr2["lat"], addr2["lon"]))
 
     total_cost = get_tax(fixed_tax=fixed_tax, tax_rate=tax_rate, distance=distance)
@@ -41,3 +42,11 @@ def get_cost_per_distance_by_address(address:DistanceAddress, fixed_tax:float, t
         "total_tax": round(total_cost, 2),
         "distance": round(distance, 1)
     }
+
+@app.get("/adress/sugestions")
+def get_address_auto_complete(text:str):
+    result = get_address(text=text)["results"]
+    suggestions = []
+    
+
+    return result
