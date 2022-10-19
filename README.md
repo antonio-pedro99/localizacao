@@ -1,6 +1,5 @@
 # Webservice[Documentation]
 
-License: IIG 
 Made  by: Antonio Pedro
 
 ## Introduction
