@@ -1,9 +1,6 @@
 # Webservice[Documentation]
 
 Made  by: Antonio Pedro
-
-## Introduction
-  This Microservice was built to handle all the geolocalization needs of the system being built by IIG. Follow up those steps to know how to use and how it works.
   
 ## How does it works?
 
